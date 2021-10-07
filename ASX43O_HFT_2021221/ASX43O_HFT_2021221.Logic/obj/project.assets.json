@@ -1,11 +1,68 @@
 {
   "version": 3,
   "targets": {
-    "net5.0": {}
+    "net5.0": {
+      "ASX43O_HFT_2021221.Data/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "ASX43O_HFT_2021221.Models": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/ASX43O_HFT_2021221.Data.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ASX43O_HFT_2021221.Data.dll": {}
+        }
+      },
+      "ASX43O_HFT_2021221.Models/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "compile": {
+          "bin/placeholder/ASX43O_HFT_2021221.Models.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ASX43O_HFT_2021221.Models.dll": {}
+        }
+      },
+      "ASX43O_HFT_2021221.Repository/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "ASX43O_HFT_2021221.Data": "1.0.0",
+          "ASX43O_HFT_2021221.Models": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/ASX43O_HFT_2021221.Repository.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ASX43O_HFT_2021221.Repository.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "ASX43O_HFT_2021221.Data/1.0.0": {
+      "type": "project",
+      "path": "../ASX43O_HFT_2021221.Data/ASX43O_HFT_2021221.Data.csproj",
+      "msbuildProject": "../ASX43O_HFT_2021221.Data/ASX43O_HFT_2021221.Data.csproj"
+    },
+    "ASX43O_HFT_2021221.Models/1.0.0": {
+      "type": "project",
+      "path": "../ASX43O_HFT_2021221.Models/ASX43O_HFT_2021221.Models.csproj",
+      "msbuildProject": "../ASX43O_HFT_2021221.Models/ASX43O_HFT_2021221.Models.csproj"
+    },
+    "ASX43O_HFT_2021221.Repository/1.0.0": {
+      "type": "project",
+      "path": "../ASX43O_HFT_2021221.Repository/ASX43O_HFT_2021221.Repository.csproj",
+      "msbuildProject": "../ASX43O_HFT_2021221.Repository/ASX43O_HFT_2021221.Repository.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net5.0": []
+    "net5.0": [
+      "ASX43O_HFT_2021221.Models >= 1.0.0",
+      "ASX43O_HFT_2021221.Repository >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\Bala\\.nuget\\packages\\": {}
@@ -33,7 +90,14 @@
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "B:\\GitHub\\ASX43O_HFT_2012221\\ASX43O_HFT_2021221\\ASX43O_HFT_2021221.Models\\ASX43O_HFT_2021221.Models.csproj": {
+              "projectPath": "B:\\GitHub\\ASX43O_HFT_2012221\\ASX43O_HFT_2021221\\ASX43O_HFT_2021221.Models\\ASX43O_HFT_2021221.Models.csproj"
+            },
+            "B:\\GitHub\\ASX43O_HFT_2012221\\ASX43O_HFT_2021221\\ASX43O_HFT_2021221.Repository\\ASX43O_HFT_2021221.Repository.csproj": {
+              "projectPath": "B:\\GitHub\\ASX43O_HFT_2012221\\ASX43O_HFT_2021221\\ASX43O_HFT_2021221.Repository\\ASX43O_HFT_2021221.Repository.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
