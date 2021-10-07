@@ -5,6 +5,20 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="TestDB.mdf" />
+    <None Remove="TestDB_log.ldf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="TestDB.mdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestDB_log.ldf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\ASX43O_HFT_2021221.Models\ASX43O_HFT_2021221.Models.csproj" />
   </ItemGroup>
 
