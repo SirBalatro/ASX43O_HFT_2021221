@@ -25,7 +25,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{A2B961
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Others", "Others", "{D844DCE1-FC03-4081-9197-4705480A9501}"
 	ProjectSection(SolutionItems) = preProject
-		..\.gitignore = ..\.gitignore
+		.gitignore = .gitignore
 	EndProjectSection
 EndProject
 Global
