@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace ASX43O_HFT_2021221.Models
 {
-    [Table("inventory")]
-    public class PlayerItem
+    [Table("skills")]
+    public class PlayerSkill
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [Column("item_id",TypeName ="int")]
+        [Column("skill_id", TypeName = "int")]
         public int Id { get; set; }
 
         [Required]
@@ -24,6 +24,5 @@ namespace ASX43O_HFT_2021221.Models
         public int OwnerId { get; set; }
         [NotMapped]
         public virtual PlayerCharacter Owner { get; set; }
-
     }
 }

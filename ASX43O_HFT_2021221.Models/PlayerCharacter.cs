@@ -20,12 +20,31 @@ namespace ASX43O_HFT_2021221.Models
         [MaxLength(30)]
         public string Name { get; set; }
 
-        [ForeignKey(nameof(PlayerRace))]
+        [ForeignKey(nameof(Race))]
         public int RaceId { get; set; }
+        [NotMapped]
+        public virtual PlayerRace Race { get; set; }
 
-        [ForeignKey(nameof(PlayerClass))]
+        [ForeignKey(nameof(Class))]
         public int ClassId { get; set; }
+        [NotMapped]
+        public virtual PlayerClass Class { get; set; }
 
+        [Required]
+        public int CharacterLevel { get; set; }
+
+        [NotMapped]
+        public virtual ICollection<PlayerSkill> Skills { get; set; }
+
+        [NotMapped]
+        public virtual ICollection<PlayerItem> Items { get; set; }
+
+        public PlayerCharacter()
+        {
+            Skills = new HashSet<PlayerSkill>();
+            Items = new HashSet<PlayerItem>();
+            CharacterLevel = 0;
+        }
 
     }
 }
