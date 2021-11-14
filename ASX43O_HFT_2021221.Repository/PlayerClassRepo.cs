@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ASX43O_HFT_2021221.Repository
 {
-    class PlayerClassRepo : IClassRepository
+    public class PlayerClassRepo : IClassRepository
     {
         RPGDbContext db;
         public PlayerClassRepo(RPGDbContext db)

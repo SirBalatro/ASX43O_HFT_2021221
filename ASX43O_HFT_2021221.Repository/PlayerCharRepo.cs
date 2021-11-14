@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ASX43O_HFT_2021221.Repository
 {
-    class PlayerCharRepo : ICharacterRepository
+    public class PlayerCharRepo : ICharacterRepository
     {
         RPGDbContext db;
         public PlayerCharRepo(RPGDbContext db)
