@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace ASX43O_HFT_2021221.Repository
 {
-    interface IRaceRepository
+    public interface IRaceRepository
     {
         void Create(PlayerRace race);
         void Delete(int id);

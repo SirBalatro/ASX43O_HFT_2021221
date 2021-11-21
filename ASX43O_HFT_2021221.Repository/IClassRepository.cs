@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace ASX43O_HFT_2021221.Repository
 {
-    interface IClassRepository
+    public interface IClassRepository
     {
         void Create(PlayerClass c);
         void Delete(int id);

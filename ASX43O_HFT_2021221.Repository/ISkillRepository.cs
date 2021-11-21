@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace ASX43O_HFT_2021221.Repository
 {
-    interface ISkillRepository
+    public interface ISkillRepository
     {
         void Create(PlayerSkill s);
         void Delete(int id);
