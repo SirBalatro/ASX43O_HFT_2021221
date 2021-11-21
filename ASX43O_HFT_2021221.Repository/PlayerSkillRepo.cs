@@ -8,36 +8,25 @@ using System.Threading.Tasks;
 
 namespace ASX43O_HFT_2021221.Repository
 {
-    public class PlayerSkillRepo : ISkillRepository
+    public class PlayerSkillRepo : Repository<PlayerSkill>, ISkillRepository
     {
-        RPGDbContext db;
-        public PlayerSkillRepo(RPGDbContext db)
+        public PlayerSkillRepo(RPGDbContext db) : base(db)
         {
-            this.db = db;
         }
-        public void Create(PlayerSkill s)
-        {
-            db.Skills.Add(s);
-            db.SaveChanges();
-        }
-        public PlayerSkill Read(int id)
+        public override PlayerSkill GetOne(int id)
         {
             return db.Skills.FirstOrDefault(s => s.Id == id);
         }
-        public IQueryable<PlayerSkill> ReadAll()
+        public override void Delete(int id)
         {
-            return db.Skills;
-        }
-        public void Update(PlayerSkill s)
-        {
-            var x = Read(s.Id);
-            x.Name = s.Name;
-            x.OwnerId = s.OwnerId;
+            db.Remove(GetOne(id));
             db.SaveChanges();
         }
-        public void Delete(int id)
+
+        public void ChangeReqLevel(int id, int lvl)
         {
-            db.Remove(Read(id));
+            var p = GetOne(id);
+            p.ReqLevel = lvl;
             db.SaveChanges();
         }
     }

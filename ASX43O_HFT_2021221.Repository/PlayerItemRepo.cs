@@ -8,37 +8,29 @@ using System.Threading.Tasks;
 
 namespace ASX43O_HFT_2021221.Repository
 {
-    public class PlayerItemRepo : IItemRepository
+    public class PlayerItemRepo : Repository<PlayerItem>, IItemRepository
     {
-        RPGDbContext db;
-        public PlayerItemRepo(RPGDbContext db)
+        public PlayerItemRepo(RPGDbContext db) : base(db)
         {
-            this.db = db;
+
         }
-        public void Create(PlayerItem i)
+
+        public void ChangeReqLevel(int id, int lvl)
         {
-            db.Inventory.Add(i);
+            var p = GetOne(id);
+            p.ReqLevel = lvl;
             db.SaveChanges();
         }
-        public PlayerItem Read(int id)
+
+        public override void Delete(int id)
         {
-            return db.Inventory.FirstOrDefault(i => i.Id == id);
-        }
-        public IQueryable<PlayerItem> ReadAll()
-        {
-            return db.Inventory;
-        }
-        public void Update(PlayerItem i)
-        {
-            var x = Read(i.Id);
-            x.Name = i.Name;
-            x.OwnerId = i.OwnerId;
+            db.Remove(GetOne(id));
             db.SaveChanges();
         }
-        public void Delete(int id)
+
+        public override PlayerItem GetOne(int id)
         {
-            db.Remove(Read(id));
-            db.SaveChanges();
+            return db.Inventory.FirstOrDefault(c => c.Id == id);
         }
     }
 }

@@ -5,10 +5,6 @@ namespace ASX43O_HFT_2021221.Repository
 {
     public interface IRaceRepository
     {
-        void Create(PlayerRace race);
-        void Delete(int id);
-        PlayerRace Read(int id);
-        IQueryable<PlayerRace> ReadAll();
-        void Update(PlayerRace race);
+        void ChangeName(int id, string name);
     }
 }

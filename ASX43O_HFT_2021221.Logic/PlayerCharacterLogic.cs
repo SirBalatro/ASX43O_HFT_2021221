@@ -10,6 +10,10 @@ namespace ASX43O_HFT_2021221.Logic
 {
     class PlayerCharacterLogic
     {
-        
+        ICharacterRepository CharRepo;
+
+        public void Create(PlayerCharacter newCharacter) { }
+        public void Delete(PlayerCharacter target) { }
+        public List<PlayerCharacter> GetAll
     }
 }

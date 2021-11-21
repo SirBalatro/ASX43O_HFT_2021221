@@ -8,35 +8,25 @@ using System.Threading.Tasks;
 
 namespace ASX43O_HFT_2021221.Repository
 {
-    public class PlayerRaceRepo : IRaceRepository
+    public class PlayerRaceRepo : Repository<PlayerRace>, IRaceRepository
     {
-        RPGDbContext db;
-        public PlayerRaceRepo(RPGDbContext db)
+        public PlayerRaceRepo(RPGDbContext db) : base(db)
         {
-            this.db = db;
         }
-        public void Create(PlayerRace race)
-        {
-            db.Races.Add(race);
-            db.SaveChanges();
-        }
-        public PlayerRace Read(int id)
+        public override PlayerRace GetOne(int id)
         {
             return db.Races.FirstOrDefault(race => race.Id == id);
         }
-        public IQueryable<PlayerRace> ReadAll()
+        public override void Delete(int id)
         {
-            return db.Races;
-        }
-        public void Update(PlayerRace race)
-        {
-            var x = Read(race.Id);
-            x.Name = race.Name;
+            db.Remove(GetOne(id));
             db.SaveChanges();
         }
-        public void Delete(int id)
+
+        public void ChangeName(int id, string name)
         {
-            db.Remove(Read(id));
+            var p = GetOne(id);
+            p.Name = name;
             db.SaveChanges();
         }
     }

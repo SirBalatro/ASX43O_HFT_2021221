@@ -8,37 +8,33 @@ using System.Threading.Tasks;
 
 namespace ASX43O_HFT_2021221.Repository
 {
-    public class PlayerCharRepo : ICharacterRepository
+    public class PlayerCharRepo : Repository<PlayerCharacter>, ICharacterRepository
     {
-        RPGDbContext db;
-        public PlayerCharRepo(RPGDbContext db)
-        {
-            this.db = db;
+        public PlayerCharRepo(RPGDbContext db) : base(db) 
+        { 
+
         }
-        public void Create(PlayerCharacter player)
-        {
-            db.Characters.Add(player);
-            db.SaveChanges();
-        }
-        public PlayerCharacter Read(int id)
+        public override PlayerCharacter GetOne(int id)
         {
             return db.Characters.FirstOrDefault(player => player.Id == id);
         }
-        public IQueryable<PlayerCharacter> ReadAll()
+        public override void Delete(int id)
         {
-            return db.Characters;
-        }
-        public void Update(PlayerCharacter character)
-        {
-            var x = Read(character.Id);
-            x.Name = character.Name;
-            x.RaceId = character.RaceId;
-            x.ClassId = character.ClassId;
+            db.Remove(GetOne(id));
             db.SaveChanges();
         }
-        public void Delete(int id)
+
+        public void LevelUp(int id)
         {
-            db.Remove(Read(id));
+            var character = GetOne(id);
+            character.CharacterLevel++;
+            db.SaveChanges();
+        }
+
+        public void ChangeName(int id, string name)
+        {
+            var character = GetOne(id);
+            character.Name = name;
             db.SaveChanges();
         }
     }
