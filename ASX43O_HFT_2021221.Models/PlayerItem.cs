@@ -22,8 +22,16 @@ namespace ASX43O_HFT_2021221.Models
 
         [ForeignKey(nameof(Owner))]
         public int OwnerId { get; set; }
+
+        public int ReqLevel { get; set; }
+
         [NotMapped]
         public virtual PlayerCharacter Owner { get; set; }
+
+        public PlayerItem()
+        {
+            ReqLevel = 0;
+        }
 
     }
 }

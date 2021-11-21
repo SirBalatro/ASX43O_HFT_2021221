@@ -21,6 +21,9 @@ namespace ASX43O_HFT_2021221.Models
         public string Name { get; set; }
 
         [NotMapped]
+        public virtual ICollection<PlayerClass> Classes { get; set; }
+
+        [NotMapped]
         public virtual ICollection<PlayerCharacter> Characters { get; set; }
 
 
@@ -29,6 +32,7 @@ namespace ASX43O_HFT_2021221.Models
         {
             Name = name;
             Characters = new HashSet<PlayerCharacter>();
+            Classes = new HashSet<PlayerClass>();
         }
     }
 }

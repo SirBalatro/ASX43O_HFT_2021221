@@ -20,6 +20,13 @@ namespace ASX43O_HFT_2021221.Models
         [MaxLength(30)]
         public string Name { get; set; }
 
+        [ForeignKey(nameof(ReqClass))]
+        public int RequiredClassId { get; set; }
+        [NotMapped]
+        public virtual PlayerClass ReqClass { get; set; }
+
+        public int ReqLevel { get; set; }
+
         [ForeignKey(nameof(Owner))]
         public int OwnerId { get; set; }
         [NotMapped]
