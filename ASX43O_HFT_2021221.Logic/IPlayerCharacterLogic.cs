@@ -1,12 +1,11 @@
 ﻿using ASX43O_HFT_2021221.Models;
 using System.Linq;
 
-namespace ASX43O_HFT_2021221.Repository
+namespace ASX43O_HFT_2021221.Logic
 {
-    public interface ICharacterRepository : IRepository<PlayerCharacter>
+    public interface IPlayerCharacterLogic : ILogic<PlayerCharacter>
     {
         void LevelUp(int id);
         void ChangeName(int id, string name);
-
     }
 }

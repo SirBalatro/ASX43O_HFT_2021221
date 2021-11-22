@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace ASX43O_HFT_2021221.Repository
 {
-    public interface IClassRepository
+    public interface IClassRepository : IRepository<PlayerClass>
     {
         void ChangeName(int id, string name);
     }

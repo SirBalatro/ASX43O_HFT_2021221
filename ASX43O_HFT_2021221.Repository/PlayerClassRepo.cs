@@ -18,12 +18,6 @@ namespace ASX43O_HFT_2021221.Repository
         {
             return db.Classes.FirstOrDefault(c => c.Id == id);
         }
-        public void Update(PlayerClass c)
-        {
-            var x = GetOne(c.Id);
-            x.Name = c.Name;
-            db.SaveChanges();
-        }
         public override void Delete(int id)
         {
             db.Remove(GetOne(id));

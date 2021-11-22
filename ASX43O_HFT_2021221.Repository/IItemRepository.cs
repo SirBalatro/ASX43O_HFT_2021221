@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace ASX43O_HFT_2021221.Repository
 {
-    public interface IItemRepository
+    public interface IItemRepository : IRepository<PlayerItem>
     {
         void ChangeReqLevel(int id, int lvl);
     }
