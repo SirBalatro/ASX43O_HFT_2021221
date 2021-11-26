@@ -20,10 +20,8 @@ namespace ASX43O_HFT_2021221.Models
         [MaxLength(30)]
         public string Name { get; set; }
 
-        [ForeignKey(nameof(ReqRace))]
-        public int ReqRaceId { get; set; }
         [NotMapped]
-        public virtual PlayerRace ReqRace { get; set; }
+        public virtual ICollection<PlayerRace> Races { get; set; }
 
         [NotMapped]
         public virtual ICollection<PlayerSkill> Skills { get; set; }
@@ -37,6 +35,8 @@ namespace ASX43O_HFT_2021221.Models
         {
             Name = name;
             Characters = new HashSet<PlayerCharacter>();
+            Skills = new HashSet<PlayerSkill>();
+            Races = new HashSet<PlayerRace>();
         }
     }
 }
