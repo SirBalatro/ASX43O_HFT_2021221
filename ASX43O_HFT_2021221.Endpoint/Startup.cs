@@ -21,13 +21,14 @@ namespace ASX43O_HFT_2021221.Endpoint
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddTransient<IPlayerCharacterLogic,PlayerCharacterLogic>();
+            services.AddTransient<IPlayerCharacterLogic, PlayerCharacterLogic>();
             services.AddTransient<ICharacterRepository, PlayerCharRepo>();
 
             services.AddTransient<IPlayerRaceLogic, PlayerRaceLogic>();
             services.AddTransient<IRaceRepository, PlayerRaceRepo>();
 
             services.AddTransient<DbContext, RPGDbContext>();
+            services.AddTransient<RPGDbContext, RPGDbContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

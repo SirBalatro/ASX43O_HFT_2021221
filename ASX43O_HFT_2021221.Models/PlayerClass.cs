@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace ASX43O_HFT_2021221.Models
@@ -21,12 +22,14 @@ namespace ASX43O_HFT_2021221.Models
         public string Name { get; set; }
 
         [NotMapped]
+        [JsonIgnore]
         public virtual ICollection<PlayerRace> Races { get; set; }
 
         [NotMapped]
         public virtual ICollection<PlayerSkill> Skills { get; set; }
 
         [NotMapped]
+        [JsonIgnore]
         public virtual ICollection<PlayerCharacter> Characters { get; set; }
 
 
