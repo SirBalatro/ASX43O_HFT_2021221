@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ASX43O_HFT_2021221.Logic
 {
-    interface IPlayerItemLogic : ILogic<PlayerItem>
+    public interface IPlayerItemLogic : ILogic<PlayerItem>
     {
         void ChangeReqLevel(int id, int lvl);
     }

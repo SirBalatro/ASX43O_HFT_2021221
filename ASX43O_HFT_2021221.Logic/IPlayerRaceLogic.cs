@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ASX43O_HFT_2021221.Logic
 {
-    interface IPlayerRaceLogic : ILogic<PlayerRace>
+    public interface IPlayerRaceLogic : ILogic<PlayerRace>
     {
         void ChangeName(int id, string name);
     }

@@ -31,6 +31,11 @@ namespace ASX43O_HFT_2021221.Logic
             raceRepo.Delete(entity);
         }
 
+        public void Delete(int id)
+        {
+            raceRepo.Delete(id);
+        }
+
         public IQueryable<PlayerRace> GetAll()
         {
             return raceRepo.GetAll();
@@ -39,6 +44,11 @@ namespace ASX43O_HFT_2021221.Logic
         public PlayerRace GetOne(int id)
         {
             return raceRepo.GetOne(id);
+        }
+
+        public void Update(PlayerRace entity)
+        {
+            raceRepo.Update(entity);
         }
     }
 }

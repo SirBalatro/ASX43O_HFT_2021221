@@ -44,15 +44,23 @@ namespace ASX43O_HFT_2021221.Data
                 .WithMany(pclass => pclass.Characters)
                 .HasForeignKey(player => player.ClassId)
                 .OnDelete(DeleteBehavior.ClientSetNull);
+                entity
+                .HasMany(player => player.Skills)
+                .WithMany(skill => skill.Characters);
+                entity
+                .HasMany(player => player.Items)
+                .WithOne(item => item.Owner)
+                .OnDelete(DeleteBehavior.ClientSetNull);
             });
 
             modelBuilder.Entity<PlayerSkill>(e =>
             {
                 e
-                .HasOne(skill => skill.Owner)
-                .WithMany(player => player.Skills)
-                .HasForeignKey(skill => skill.OwnerId)
-                .OnDelete(DeleteBehavior.ClientSetNull);
+                .HasMany(skill => skill.Characters)
+                .WithMany(player => player.Skills);
+                e
+                .HasMany(skill => skill.Classes)
+                .WithMany(clss => clss.Skills);
             });
             modelBuilder.Entity<PlayerItem>(e =>
             {
@@ -63,19 +71,44 @@ namespace ASX43O_HFT_2021221.Data
                 .OnDelete(DeleteBehavior.ClientSetNull);
             });
 
+            modelBuilder.Entity<PlayerRace>(e =>
+            {
+                e
+                .HasMany(race => race.Characters)
+                .WithOne(chr => chr.Race)
+                .OnDelete(DeleteBehavior.ClientSetNull);
+                e
+                .HasMany(race => race.Classes)
+                .WithMany(clss => clss.Races);
+            });
+
+            modelBuilder.Entity<PlayerClass>(e =>
+            {
+                e
+                .HasMany(clss => clss.Characters)
+                .WithOne(chr => chr.Class)
+                .OnDelete(DeleteBehavior.ClientSetNull);
+                e
+                .HasMany(clss => clss.Races)
+                .WithMany(race => race.Classes);
+                e
+                .HasMany(clss => clss.Skills)
+                .WithMany(skill => skill.Classes);
+            });
+
             var human = new PlayerRace() { Id = 1, Name = "Human" };
             var elf = new PlayerRace() { Id = 2, Name = "Elf" };
             var orc = new PlayerRace() { Id = 3, Name = "Orc" };
 
-            var warrior = new PlayerClass() { Id = 1, Name = "Warrior" , ReqRaceId = elf.Id};
-            var shaman = new PlayerClass() { Id = 2, Name = "Shaman", ReqRaceId = orc.Id };
-            var wizard = new PlayerClass() { Id = 3, Name = "Wizard", ReqRaceId = human.Id };
-            var barbarian = new PlayerClass() { Id = 4, Name = "Barbarian", ReqRaceId = orc.Id };
-            var thief = new PlayerClass() { Id = 5, Name = "Thief", ReqRaceId = human.Id };
-            var knight = new PlayerClass() { Id = 6, Name = "Knight", ReqRaceId = human.Id };
-            var assassin = new PlayerClass() { Id = 7, Name = "Assassin", ReqRaceId = elf.Id };
-            var archer = new PlayerClass() { Id = 8, Name = "Archer", ReqRaceId = elf.Id };
-            var witch = new PlayerClass() { Id = 9, Name = "Witch", ReqRaceId = human.Id };
+            var warrior = new PlayerClass() { Id = 1, Name = "Warrior" };
+            var shaman = new PlayerClass() { Id = 2, Name = "Shaman"};
+            var wizard = new PlayerClass() { Id = 3, Name = "Wizard"};
+            var barbarian = new PlayerClass() { Id = 4, Name = "Barbarian"};
+            var thief = new PlayerClass() { Id = 5, Name = "Thief"};
+            var knight = new PlayerClass() { Id = 6, Name = "Knight"};
+            var assassin = new PlayerClass() { Id = 7, Name = "Assassin"};
+            var archer = new PlayerClass() { Id = 8, Name = "Archer"};
+            var witch = new PlayerClass() { Id = 9, Name = "Witch"};
 
             var robin = new PlayerCharacter() { Id = 1, RaceId = human.Id, Name = "Robin", ClassId = thief.Id , CharacterLevel = 3};
             var brog = new PlayerCharacter() { Id = 2, RaceId = orc.Id, Name = "Brog", ClassId = barbarian.Id , CharacterLevel = 4};
@@ -89,14 +122,14 @@ namespace ASX43O_HFT_2021221.Data
                 robin, brog, legolas, alira, zuluhed, khainite
             };
 
-            var skillFight = new PlayerSkill() { Id = 1, Name = "Fegyverhasználat", ReqLevel = 1, RequiredClassId = warrior.Id };
-            var skillArchery = new PlayerSkill() { Id = 2, Name = "Íjászat", ReqLevel = 1, RequiredClassId = archer.Id };
-            var skillCurse = new PlayerSkill() { Id = 3, Name = "Átkok", ReqLevel = 4, RequiredClassId = witch.Id };
-            var skillPoison = new PlayerSkill() { Id = 4, Name = "Méregkeverés", ReqLevel = 3, RequiredClassId = assassin.Id };
-            var skillHeal = new PlayerSkill() { Id = 5, Name = "Gyógyítás", ReqLevel = 3, RequiredClassId = shaman.Id };
-            var skillBlock = new PlayerSkill() { Id = 6, Name = "Pajzshasználat", ReqLevel = 2, RequiredClassId = knight.Id };
-            var skillPortal = new PlayerSkill() { Id = 7, Name = "Portál", ReqLevel = 20, RequiredClassId = wizard.Id };
-            var skillSteal = new PlayerSkill() { Id = 8, Name = "Lopás", ReqLevel = 2, RequiredClassId = thief.Id };
+            var skillFight = new PlayerSkill() { Id = 1, Name = "Fegyverhasználat", ReqLevel = 1, };
+            var skillArchery = new PlayerSkill() { Id = 2, Name = "Íjászat", ReqLevel = 1, };
+            var skillCurse = new PlayerSkill() { Id = 3, Name = "Átkok", ReqLevel = 4, };
+            var skillPoison = new PlayerSkill() { Id = 4, Name = "Méregkeverés", ReqLevel = 3, };
+            var skillHeal = new PlayerSkill() { Id = 5, Name = "Gyógyítás", ReqLevel = 3, };
+            var skillBlock = new PlayerSkill() { Id = 6, Name = "Pajzshasználat", ReqLevel = 2, };
+            var skillPortal = new PlayerSkill() { Id = 7, Name = "Portál", ReqLevel = 20, };
+            var skillSteal = new PlayerSkill() { Id = 8, Name = "Lopás", ReqLevel = 2, };
 
             var skills = new List<PlayerSkill>() { 
                 skillFight, skillArchery, skillCurse, skillPoison, skillHeal, skillBlock, skillPortal, skillSteal

@@ -12,5 +12,7 @@ namespace ASX43O_HFT_2021221.Logic
         IQueryable<T> GetAll();
         void Create(T entity);
         void Delete(T entity);
+        void Delete(int id);
+        void Update(T entity);
     }
 }

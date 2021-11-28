@@ -36,6 +36,11 @@ namespace ASX43O_HFT_2021221.Logic
             charRepo.Delete(entity);
         }
 
+        public void Delete(int id)
+        {
+            charRepo.Delete(id);
+        }
+
         public IQueryable<PlayerCharacter> GetAll()
         {
             return charRepo.GetAll();
@@ -49,6 +54,11 @@ namespace ASX43O_HFT_2021221.Logic
         public void LevelUp(int id)
         {
             charRepo.LevelUp(id);
+        }
+
+        public void Update(PlayerCharacter entity)
+        {
+            charRepo.Update(entity);
         }
     }
 }

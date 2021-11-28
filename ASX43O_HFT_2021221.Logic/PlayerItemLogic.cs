@@ -31,6 +31,11 @@ namespace ASX43O_HFT_2021221.Logic
             itemRepo.Delete(entity);
         }
 
+        public void Delete(int id)
+        {
+            itemRepo.Delete(id);
+        }
+
         public IQueryable<PlayerItem> GetAll()
         {
             return itemRepo.GetAll();
@@ -39,6 +44,11 @@ namespace ASX43O_HFT_2021221.Logic
         public PlayerItem GetOne(int id)
         {
             return itemRepo.GetOne(id);
+        }
+
+        public void Update(PlayerItem entity)
+        {
+            itemRepo.Update(entity);
         }
     }
 }
