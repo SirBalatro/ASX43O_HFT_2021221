@@ -43,7 +43,7 @@ namespace ASX43O_HFT_2021221.Endpoint.Controllers
         }
 
         // PUT api/<PlayerClassController>/5
-        [HttpPut("{id}")]
+        [HttpPut]
         public void Put([FromBody] PlayerClass value)
         {
             logic.Update(value);

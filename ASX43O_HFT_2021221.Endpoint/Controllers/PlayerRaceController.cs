@@ -41,7 +41,7 @@ namespace ASX43O_HFT_2021221.Endpoint.Controllers
         }
 
         // PUT api/<PlayerRaceController>/5
-        [HttpPut("{id}")]
+        [HttpPut]
         public void Put([FromBody] PlayerRace value)
         {
             l.Update(value);
