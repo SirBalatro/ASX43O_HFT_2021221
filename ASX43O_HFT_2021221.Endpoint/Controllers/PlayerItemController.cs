@@ -42,7 +42,7 @@ namespace ASX43O_HFT_2021221.Endpoint.Controllers
 
         // PUT api/<PlayerItemController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] PlayerItem value)
+        public void Put([FromBody] PlayerItem value)
         {
             l.Update(value);
         }
