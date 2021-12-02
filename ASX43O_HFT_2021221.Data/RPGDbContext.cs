@@ -47,10 +47,6 @@ namespace ASX43O_HFT_2021221.Data
                 entity
                 .HasMany(player => player.Skills)
                 .WithMany(skill => skill.Characters);
-                entity
-                .HasMany(player => player.Items)
-                .WithOne(item => item.Owner)
-                .OnDelete(DeleteBehavior.ClientSetNull);
             });
 
             modelBuilder.Entity<PlayerSkill>(e =>
@@ -65,18 +61,14 @@ namespace ASX43O_HFT_2021221.Data
             modelBuilder.Entity<PlayerItem>(e =>
             {
                 e
-                .HasOne(skill => skill.Owner)
+                .HasOne(item => item.Owner)
                 .WithMany(player => player.Items)
-                .HasForeignKey(skill => skill.OwnerId)
+                .HasForeignKey(item => item.OwnerId)
                 .OnDelete(DeleteBehavior.ClientSetNull);
             });
 
             modelBuilder.Entity<PlayerRace>(e =>
             {
-                e
-                .HasMany(race => race.Characters)
-                .WithOne(chr => chr.Race)
-                .OnDelete(DeleteBehavior.ClientSetNull);
                 e
                 .HasMany(race => race.Classes)
                 .WithMany(clss => clss.Races);
@@ -84,10 +76,6 @@ namespace ASX43O_HFT_2021221.Data
 
             modelBuilder.Entity<PlayerClass>(e =>
             {
-                e
-                .HasMany(clss => clss.Characters)
-                .WithOne(chr => chr.Class)
-                .OnDelete(DeleteBehavior.ClientSetNull);
                 e
                 .HasMany(clss => clss.Races)
                 .WithMany(race => race.Classes);
@@ -117,10 +105,10 @@ namespace ASX43O_HFT_2021221.Data
             var zuluhed = new PlayerCharacter() { Id = 5, RaceId = orc.Id, Name = "Zuluhed", ClassId = shaman.Id , CharacterLevel = 10};
             var khainite = new PlayerCharacter() { Id = 6, RaceId = elf.Id, Name = "Khainite", ClassId = assassin.Id, CharacterLevel = 10};
 
-
+            /*
             var characters = new List<PlayerCharacter>() {
                 robin, brog, legolas, alira, zuluhed, khainite
-            };
+            };*/
 
             var skillFight = new PlayerSkill() { Id = 1, Name = "Fegyverhasználat", ReqLevel = 1, };
             var skillArchery = new PlayerSkill() { Id = 2, Name = "Íjászat", ReqLevel = 1, };
@@ -130,26 +118,27 @@ namespace ASX43O_HFT_2021221.Data
             var skillBlock = new PlayerSkill() { Id = 6, Name = "Pajzshasználat", ReqLevel = 2, };
             var skillPortal = new PlayerSkill() { Id = 7, Name = "Portál", ReqLevel = 20, };
             var skillSteal = new PlayerSkill() { Id = 8, Name = "Lopás", ReqLevel = 2, };
-
+            /*
             var skills = new List<PlayerSkill>() { 
                 skillFight, skillArchery, skillCurse, skillPoison, skillHeal, skillBlock, skillPortal, skillSteal
-            };
+            };*/
 
-            var sword = new PlayerItem() { Id = 1, Name = "Shortsword", OwnerId = khainite.Id , ReqLevel = 1};
-            var bow = new PlayerItem() { Id = 1, Name = "Elven Bow", OwnerId = legolas.Id, ReqLevel = 4 };
-            var dagger = new PlayerItem() { Id = 1, Name = "Poison Dagger", OwnerId = khainite.Id, ReqLevel = 2 };
-            var cloak = new PlayerItem() { Id = 1, Name = "Cloak", OwnerId = robin.Id, ReqLevel = 1 };
-            var shield = new PlayerItem() { Id = 1, Name = "A wooden door", OwnerId = brog.Id, ReqLevel = 1 };
+            var sword = new PlayerItem() { Id = 10, Name = "Shortsword", OwnerId = khainite.Id , ReqLevel = 1};
+            var bow = new PlayerItem() { Id = 11, Name = "Elven Bow", OwnerId = legolas.Id, ReqLevel = 4 };
+            var dagger = new PlayerItem() { Id = 12, Name = "Poison Dagger", OwnerId = khainite.Id, ReqLevel = 2 };
+            var cloak = new PlayerItem() { Id = 13, Name = "Cloak", OwnerId = robin.Id, ReqLevel = 1 };
+            var shield = new PlayerItem() { Id = 14, Name = "A wooden door", OwnerId = brog.Id, ReqLevel = 1 };
+            
+            /*
             var items = new List<PlayerItem>() {
                 sword, bow, dagger, cloak, shield
-            };
+            };*/
 
-
-            modelBuilder.Entity<PlayerCharacter>().HasData(characters);
+            modelBuilder.Entity<PlayerCharacter>().HasData(robin, brog, legolas, alira, zuluhed, khainite);
             modelBuilder.Entity<PlayerRace>().HasData(human, elf, orc);
             modelBuilder.Entity<PlayerClass>().HasData(warrior,shaman,wizard,barbarian,thief,knight,assassin,archer,witch);
-            modelBuilder.Entity<PlayerItem>().HasData(items);
-            modelBuilder.Entity<PlayerSkill>().HasData(skills);
+            modelBuilder.Entity<PlayerItem>().HasData(sword, bow, dagger, cloak, shield);
+            modelBuilder.Entity<PlayerSkill>().HasData(skillFight, skillArchery, skillCurse, skillPoison, skillHeal, skillBlock, skillPortal, skillSteal);
         }
 
     }

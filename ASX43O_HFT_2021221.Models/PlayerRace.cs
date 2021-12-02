@@ -17,7 +17,6 @@ namespace ASX43O_HFT_2021221.Models
         [Column("race_id", TypeName = "int")]
         public int Id { get; set; }
 
-        [Required]
         [MaxLength(30)]
         public string Name { get; set; }
 

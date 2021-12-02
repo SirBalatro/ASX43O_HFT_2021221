@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace ASX43O_HFT_2021221.Endpoint.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class PlayerRaceController : ControllerBase
     {
