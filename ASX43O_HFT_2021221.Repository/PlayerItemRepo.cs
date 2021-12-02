@@ -23,7 +23,7 @@ namespace ASX43O_HFT_2021221.Repository
 
         public override void Delete(int id)
         {
-            db.Remove(GetOne(id));
+            db.Set<PlayerItem>().Remove(GetOne(id));
             db.SaveChanges();
         }
 
