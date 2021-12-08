@@ -27,7 +27,7 @@ namespace ASX43O_HFT_2021221.Repository
             db.SaveChanges();
         }
 
-        public IQueryable<T> GetAll()
+        public IEnumerable<T> GetAll()
         {
             return db.Set<T>();
         }

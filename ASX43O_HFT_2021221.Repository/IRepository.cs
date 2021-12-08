@@ -10,7 +10,7 @@ namespace ASX43O_HFT_2021221.Repository
     public interface IRepository<T> where T : class
     {
         T GetOne(int id);
-        IQueryable<T> GetAll();
+        IEnumerable<T> GetAll();
         void Delete(T entity);
         void Delete(int id);
         void Create(T entity);

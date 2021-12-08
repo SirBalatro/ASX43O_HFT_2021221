@@ -30,7 +30,7 @@ namespace ASX43O_HFT_2021221.Logic
             repo.Delete(id);
         }
 
-        public IQueryable<PlayerSkill> GetAll()
+        public IEnumerable<PlayerSkill> GetAll()
         {
             return repo.GetAll();
         }

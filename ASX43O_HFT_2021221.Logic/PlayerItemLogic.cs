@@ -42,7 +42,7 @@ namespace ASX43O_HFT_2021221.Logic
             itemRepo.Delete(id);
         }
 
-        public IQueryable<PlayerItem> GetAll()
+        public IEnumerable<PlayerItem> GetAll()
         {
             return itemRepo.GetAll();
         }

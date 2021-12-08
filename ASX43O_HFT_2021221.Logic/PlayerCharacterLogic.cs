@@ -41,7 +41,7 @@ namespace ASX43O_HFT_2021221.Logic
             charRepo.Delete(id);
         }
 
-        public IQueryable<PlayerCharacter> GetAll()
+        public IEnumerable<PlayerCharacter> GetAll()
         {
             return charRepo.GetAll();
         }

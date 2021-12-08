@@ -36,7 +36,7 @@ namespace ASX43O_HFT_2021221.Logic
             raceRepo.Delete(id);
         }
 
-        public IQueryable<PlayerRace> GetAll()
+        public IEnumerable<PlayerRace> GetAll()
         {
             return raceRepo.GetAll();
         }
