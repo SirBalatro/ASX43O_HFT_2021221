@@ -14,6 +14,15 @@ namespace ASX43O_HFT_2021221.Repository
         {
 
         }
+
+        public void ChangeOwner(int id, PlayerCharacter newOwner)
+        {
+            var p = GetOne(id);
+            p.Owner = newOwner;
+            p.OwnerId = newOwner.Id;
+            db.SaveChanges();
+        }
+
         public void ChangeReqLevel(int id, int lvl)
         {
             var p = GetOne(id);
