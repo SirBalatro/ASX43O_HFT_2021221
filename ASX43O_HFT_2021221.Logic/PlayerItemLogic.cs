@@ -19,7 +19,7 @@ namespace ASX43O_HFT_2021221.Logic
 
         public void ChangeOwner(int id, PlayerCharacter newOwner)
         {
-            itemRepo.ChangeOwner(int id, PlayerCharacter newOwner)
+            itemRepo.ChangeOwner(id, newOwner);
         }
 
         public void ChangeReqLevel(int id, int lvl)
