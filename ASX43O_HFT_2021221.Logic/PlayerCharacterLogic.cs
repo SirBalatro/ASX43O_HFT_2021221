@@ -10,7 +10,7 @@ namespace ASX43O_HFT_2021221.Logic
 {
     public class PlayerCharacterLogic : IPlayerCharacterLogic
     {
-        ICharacterRepository charRepo;
+        private ICharacterRepository charRepo;
 
         public PlayerCharacterLogic(ICharacterRepository charRepo)
         {
@@ -24,11 +24,14 @@ namespace ASX43O_HFT_2021221.Logic
 
         public void Create(PlayerCharacter entity)
         {
-            if (entity.CharacterLevel < 0)
+            if (entity.Id > 0 && entity.Name != null && entity.Name != "" && entity.CharacterLevel >= 0)
             {
-                throw new ArgumentException(nameof(entity), "Character level can't be negative");
+                charRepo.Create(entity);
             }
-            charRepo.Create(entity);
+            else
+            {
+                throw new ArgumentException("Character creation failed, id, name or level invalid");
+            }
         }
 
         public void Delete(PlayerCharacter entity)
@@ -58,7 +61,14 @@ namespace ASX43O_HFT_2021221.Logic
 
         public void Update(PlayerCharacter entity)
         {
-            charRepo.Update(entity);
+            if (entity.Id > 0 && entity.Name != null && entity.Name != "" && entity.CharacterLevel >= 0)
+            {
+                charRepo.Update(entity);
+            }
+            else
+            {
+                throw new ArgumentException("Character update failed, id, name or level invalid");
+            }
         }
 
         public IEnumerable<AverageResult> RaceLevelAverage()
@@ -73,5 +83,15 @@ namespace ASX43O_HFT_2021221.Logic
         {
             return (double)charRepo.GetAll().Average(x => x.CharacterLevel);
         }
+
+        public PlayerCharacter CharacterWithItem(PlayerItem playerItem)
+        {
+            var q = (from c in charRepo.GetAll()
+                     where c.Items.Any(x => x.Id.Equals(playerItem.Id))
+                     select c).FirstOrDefault();
+
+            return q;
+        }
+
     }
 }

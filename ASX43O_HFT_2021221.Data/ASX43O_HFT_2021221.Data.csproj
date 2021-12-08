@@ -5,15 +5,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="RPGDb.mdf" />
-    <None Remove="RPGDb_log.ldf" />
+    <None Remove="RPGDatabase.mdf" />
+    <None Remove="RPGDatabase_log.ldf" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="RPGDb.mdf">
+    <Content Include="RPGDatabase.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="RPGDb_log.ldf">
+    <Content Include="RPGDatabase_log.ldf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

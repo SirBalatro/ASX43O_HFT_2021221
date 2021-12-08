@@ -15,9 +15,17 @@ namespace ASX43O_HFT_2021221.Logic
         {
             this.repo = repo;
         }
+
         public void Create(PlayerClass entity)
         {
-            repo.Create(entity);
+            if (entity.Id > 0 && entity.Name != null && entity.Name != "")
+            {
+                repo.Create(entity);
+            }
+            else
+            {
+                throw new ArgumentException("Class creation failed, id or name invalid");
+            }
         }
 
         public void Delete(PlayerClass entity)
@@ -42,7 +50,14 @@ namespace ASX43O_HFT_2021221.Logic
 
         public void Update(PlayerClass entity)
         {
-            repo.Update(entity);
+            if (entity.Id > 0 && entity.Name != null && entity.Name != "")
+            {
+                repo.Update(entity);
+            }
+            else
+            {
+                throw new ArgumentException("Class update failed, id or name invalid");
+            }
         }
     }
 }

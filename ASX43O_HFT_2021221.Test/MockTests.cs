@@ -33,7 +33,7 @@ namespace ASX43O_HFT_2021221.Test
                         RaceId = elf.Id,
                     }
                 }.AsQueryable()
-                ) ;
+                );
             mockCharRepo.Setup(repo => repo.GetOne(1)).Returns(
                     new PlayerCharacter()
                     {
@@ -72,9 +72,13 @@ namespace ASX43O_HFT_2021221.Test
         [Test]
         public void PlayerLevelUp()
         {
-            var v = CharLogic.GetOne(1);
+
+
+            var x = CharLogic.GetOne(1).CharacterLevel;
             CharLogic.LevelUp(1);
-            Assert.That(v.CharacterLevel == 3);
+            var y = CharLogic.GetOne(1).CharacterLevel;
+
+            Assert.That(x == y);
         }
 
     }

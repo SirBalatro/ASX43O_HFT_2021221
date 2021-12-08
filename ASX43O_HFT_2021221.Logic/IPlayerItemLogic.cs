@@ -11,5 +11,6 @@ namespace ASX43O_HFT_2021221.Logic
     {
         void ChangeReqLevel(int id, int lvl);
         void ChangeOwner(int id, PlayerCharacter newOwner);
+        PlayerItem BestItem();
     }
 }

@@ -13,8 +13,9 @@ namespace ASX43O_HFT_2021221.Data
         public virtual DbSet<PlayerCharacter> Characters { get; set; }
         public virtual DbSet<PlayerRace> Races { get; set; }
         public virtual DbSet<PlayerClass> Classes { get; set; }
-        //public virtual DbSet<PlayerSkill> Skills { get; set; }
         public virtual DbSet<PlayerItem> Inventory { get; set; }
+
+        //public virtual DbSet<PlayerSkill> Skills { get; set; }
 
         public RPGDbContext()
         {
@@ -26,7 +27,8 @@ namespace ASX43O_HFT_2021221.Data
             {
                 optionsBuilder
                     .UseLazyLoadingProxies()
-                    .UseSqlServer(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\RPGDb.mdf;Integrated Security=True;MultipleActiveResultSets=True");
+                    .UseSqlServer(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\RPGDatabase.mdf;Integrated Security=True");
+                    //.UseSqlServer(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\RPGDb.mdf;Integrated Security=True;MultipleActiveResultSets=True");
             }
         }
 

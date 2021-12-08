@@ -16,5 +16,22 @@ namespace ASX43O_HFT_2021221.Models
             Name = name;
             Result = result;
         }
+        public override bool Equals(object obj)
+        {
+            if (obj is AverageResult)
+            {
+                var other = obj as AverageResult;
+                return this.Result == other.Result && this.Name == other.Name;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public override int GetHashCode()
+        {
+            return Name.GetHashCode() + Result.GetHashCode();
+        }
     }
 }

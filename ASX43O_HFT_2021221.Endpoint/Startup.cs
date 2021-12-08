@@ -32,8 +32,7 @@ namespace ASX43O_HFT_2021221.Endpoint
             //services.AddTransient <ISkillRepository, PlayerSkillRepo> ();
             services.AddTransient <IItemRepository, PlayerItemRepo> ();
 
-
-            services.AddTransient<DbContext, RPGDbContext>();
+            //services.AddTransient<DbContext, RPGDbContext>();
             services.AddTransient<RPGDbContext, RPGDbContext>();
             services.AddControllers();
         }

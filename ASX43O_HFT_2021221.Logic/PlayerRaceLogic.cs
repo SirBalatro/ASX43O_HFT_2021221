@@ -18,12 +18,26 @@ namespace ASX43O_HFT_2021221.Logic
         }
         public void ChangeName(int id, string name)
         {
-            raceRepo.ChangeName(id, name);
+            if (name != null && name != "")
+            {
+                raceRepo.ChangeName(id, name);
+            }
+            else
+            {
+                throw new ArgumentException("Name changed failed, name null or empty");
+            }
         }
 
         public void Create(PlayerRace entity)
         {
-            raceRepo.Create(entity);
+            if (entity.Id > 0 && entity.Name != null && entity.Name != "")
+            {
+                raceRepo.Create(entity);
+            }
+            else
+            {
+                throw new ArgumentException("Race creation failed, name null or wrong id");
+            }
         }
 
         public void Delete(PlayerRace entity)
@@ -48,7 +62,14 @@ namespace ASX43O_HFT_2021221.Logic
 
         public void Update(PlayerRace entity)
         {
-            raceRepo.Update(entity);
+            if (entity.Id > 0 && entity.Name != null && entity.Name != "")
+            {
+                raceRepo.Update(entity);
+            }
+            else
+            {
+                throw new ArgumentException("Race update failed, name null or wrong id");
+            }
         }
     }
 }
