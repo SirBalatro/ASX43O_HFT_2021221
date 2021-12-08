@@ -31,15 +31,17 @@ namespace ASX43O_HFT_2021221.Models
 
         public int CharacterLevel { get; set; }
 
+        /*
         [NotMapped]
         public virtual ICollection<PlayerSkill> Skills { get; set; }
+        */
 
         [NotMapped]
         public virtual ICollection<PlayerItem> Items { get; set; }
 
         public PlayerCharacter()
         {
-            Skills = new HashSet<PlayerSkill>();
+            //Skills = new HashSet<PlayerSkill>();
             Items = new HashSet<PlayerItem>();
             CharacterLevel = 0;
         }

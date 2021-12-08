@@ -1,4 +1,5 @@
-﻿using System;
+﻿/*
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -31,3 +32,4 @@ namespace ASX43O_HFT_2021221.Models
         public virtual ICollection<PlayerClass> Classes { get; set; }
     }
 }
+*/

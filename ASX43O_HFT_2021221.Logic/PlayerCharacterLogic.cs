@@ -60,5 +60,18 @@ namespace ASX43O_HFT_2021221.Logic
         {
             charRepo.Update(entity);
         }
+
+        public IEnumerable<AverageResult> RaceLevelAverage()
+        {
+            var q = from c in charRepo.GetAll()
+                    group c by new { c.RaceId, c.Race.Name } into g
+                    select new AverageResult(g.Key.Name, g.Average(x => x.CharacterLevel));
+            return q.ToList();
+        }
+
+        public double LevelAverage()
+        {
+            return (double)charRepo.GetAll().Average(x => x.CharacterLevel);
+        }
     }
 }

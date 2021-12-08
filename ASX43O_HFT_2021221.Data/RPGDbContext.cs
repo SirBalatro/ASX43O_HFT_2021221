@@ -13,7 +13,7 @@ namespace ASX43O_HFT_2021221.Data
         public virtual DbSet<PlayerCharacter> Characters { get; set; }
         public virtual DbSet<PlayerRace> Races { get; set; }
         public virtual DbSet<PlayerClass> Classes { get; set; }
-        public virtual DbSet<PlayerSkill> Skills { get; set; }
+        //public virtual DbSet<PlayerSkill> Skills { get; set; }
         public virtual DbSet<PlayerItem> Inventory { get; set; }
 
         public RPGDbContext()
@@ -44,11 +44,14 @@ namespace ASX43O_HFT_2021221.Data
                 .WithMany(pclass => pclass.Characters)
                 .HasForeignKey(player => player.ClassId)
                 .OnDelete(DeleteBehavior.ClientSetNull);
+                /*
                 entity
                 .HasMany(player => player.Skills)
                 .WithMany(skill => skill.Characters);
+                */
             });
 
+            /*
             modelBuilder.Entity<PlayerSkill>(e =>
             {
                 e
@@ -58,6 +61,8 @@ namespace ASX43O_HFT_2021221.Data
                 .HasMany(skill => skill.Classes)
                 .WithMany(clss => clss.Skills);
             });
+            */
+
             modelBuilder.Entity<PlayerItem>(e =>
             {
                 e
@@ -67,6 +72,7 @@ namespace ASX43O_HFT_2021221.Data
                 .OnDelete(DeleteBehavior.ClientSetNull);
             });
 
+            /*
             modelBuilder.Entity<PlayerRace>(e =>
             {
                 e
@@ -83,6 +89,7 @@ namespace ASX43O_HFT_2021221.Data
                 .HasMany(clss => clss.Skills)
                 .WithMany(skill => skill.Classes);
             });
+            */
 
             var human = new PlayerRace() { Id = 1, Name = "Human" };
             var elf = new PlayerRace() { Id = 2, Name = "Elf" };
@@ -110,6 +117,7 @@ namespace ASX43O_HFT_2021221.Data
                 robin, brog, legolas, alira, zuluhed, khainite
             };*/
 
+            /*
             var skillFight = new PlayerSkill() { Id = 1, Name = "Fegyverhasználat", ReqLevel = 1, };
             var skillArchery = new PlayerSkill() { Id = 2, Name = "Íjászat", ReqLevel = 1, };
             var skillCurse = new PlayerSkill() { Id = 3, Name = "Átkok", ReqLevel = 4, };
@@ -118,6 +126,8 @@ namespace ASX43O_HFT_2021221.Data
             var skillBlock = new PlayerSkill() { Id = 6, Name = "Pajzshasználat", ReqLevel = 2, };
             var skillPortal = new PlayerSkill() { Id = 7, Name = "Portál", ReqLevel = 20, };
             var skillSteal = new PlayerSkill() { Id = 8, Name = "Lopás", ReqLevel = 2, };
+            */
+
             /*
             var skills = new List<PlayerSkill>() { 
                 skillFight, skillArchery, skillCurse, skillPoison, skillHeal, skillBlock, skillPortal, skillSteal
@@ -138,7 +148,7 @@ namespace ASX43O_HFT_2021221.Data
             modelBuilder.Entity<PlayerRace>().HasData(human, elf, orc);
             modelBuilder.Entity<PlayerClass>().HasData(warrior,shaman,wizard,barbarian,thief,knight,assassin,archer,witch);
             modelBuilder.Entity<PlayerItem>().HasData(sword, bow, dagger, cloak, shield);
-            modelBuilder.Entity<PlayerSkill>().HasData(skillFight, skillArchery, skillCurse, skillPoison, skillHeal, skillBlock, skillPortal, skillSteal);
+            //modelBuilder.Entity<PlayerSkill>().HasData(skillFight, skillArchery, skillCurse, skillPoison, skillHeal, skillBlock, skillPortal, skillSteal);
         }
 
     }

@@ -24,8 +24,10 @@ namespace ASX43O_HFT_2021221.Models
         [JsonIgnore]
         public virtual ICollection<PlayerRace> Races { get; set; }
 
+        /*
         [NotMapped]
         public virtual ICollection<PlayerSkill> Skills { get; set; }
+        */
 
         [NotMapped]
         [JsonIgnore]
@@ -37,7 +39,7 @@ namespace ASX43O_HFT_2021221.Models
         {
             Name = name;
             Characters = new HashSet<PlayerCharacter>();
-            Skills = new HashSet<PlayerSkill>();
+            //Skills = new HashSet<PlayerSkill>();
             Races = new HashSet<PlayerRace>();
         }
     }
