@@ -67,6 +67,16 @@ namespace ASX43O_HFT_2021221.Client
             }
             return item;
         }
+        public List<T> GetListWithArgument<T>(int id, string endpoint)
+        {
+            List<T> items = new List<T>();
+            HttpResponseMessage response = client.GetAsync(endpoint + "/" + id.ToString()).GetAwaiter().GetResult();
+            if (response.IsSuccessStatusCode)
+            {
+                items = response.Content.ReadAsAsync<List<T>>().GetAwaiter().GetResult();
+            }
+            return items;
+        }
 
         public void Post<T>(T item, string endpoint)
         {

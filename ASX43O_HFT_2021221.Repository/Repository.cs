@@ -38,6 +38,7 @@ namespace ASX43O_HFT_2021221.Repository
         public void Update(T entity)
         {
             db.Update(entity);
+            db.SaveChanges();
         }
     }
 }

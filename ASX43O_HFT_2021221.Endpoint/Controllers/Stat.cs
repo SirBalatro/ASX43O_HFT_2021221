@@ -40,5 +40,28 @@ namespace ASX43O_HFT_2021221.Endpoint.Controllers
             return ncLogic.CharacterWithBestItem();
         }
 
+        [HttpGet("{id}")]
+        public PlayerCharacter CharacterWithItem(int id)
+        {
+            return ncLogic.CharacterWithItem(id);
+        }
+
+        [HttpGet("{id}")]
+        public IEnumerable<PlayerItem> ItemsUsedByClass(int id)
+        {
+            return ncLogic.ItemsUsedByClass(id);
+        }
+
+        [HttpGet]
+        public IEnumerable<PlayerClass> UsedClasses()
+        {
+            return ncLogic.UsedClasses();
+        }
+
+        [HttpGet]
+        public IEnumerable<ItemsByRaceResult> ItemsByRace()
+        {
+            return ncLogic.ItemsByRace();
+        }
     }
 }

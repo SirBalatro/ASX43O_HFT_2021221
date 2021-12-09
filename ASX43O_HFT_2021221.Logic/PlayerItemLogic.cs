@@ -24,43 +24,44 @@ namespace ASX43O_HFT_2021221.Logic
                      select i).FirstOrDefault();
         }
 
-        public void ChangeOwner(int id, PlayerCharacter newOwner)
-        {
-            itemRepo.ChangeOwner(id, newOwner);
-        }
-
-        public void ChangeReqLevel(int id, int lvl)
-        {
-            if (lvl >= 0)
-            {
-                itemRepo.ChangeReqLevel(id, lvl);
-            }
-            else
-            {
-                itemRepo.ChangeReqLevel(id, 0);
-            }
-        }
-
         public void Create(PlayerItem entity)
         {
-            if (entity.Id > 0 && entity.Name != null && entity.Name != "" && entity.ReqLevel >= 0)
+            if (entity.Name != null && entity.Name != "")
             {
+                if (entity.ReqLevel !>= 0)
+                {
+                    entity.ReqLevel = 0;
+                }
                 itemRepo.Create(entity);
             }
             else
             {
-                throw new ArgumentException("Item creation failed, invalid req. level, name null or wrong id");
+                throw new ArgumentException("Item creation failed, name null or empty");
             }
         }
 
         public void Delete(PlayerItem entity)
         {
-            itemRepo.Delete(entity);
+            if (itemRepo.GetAll().Contains(entity))
+            {
+                itemRepo.Delete(entity);
+            }
+            else
+            {
+                throw new Exception("Given item doesn't exist");
+            }
         }
 
         public void Delete(int id)
         {
-            itemRepo.Delete(id);
+            if (itemRepo.GetAll().Any(x => x.Id.Equals(id)))
+            {
+                itemRepo.Delete(id);
+            }
+            else
+            {
+                throw new Exception("Given item id doesn't exist");
+            }
         }
 
         public IEnumerable<PlayerItem> GetAll()
@@ -75,13 +76,17 @@ namespace ASX43O_HFT_2021221.Logic
 
         public void Update(PlayerItem entity)
         {
-            if (entity.Id > 0 && entity.Name != null && entity.Name != "" && entity.ReqLevel >= 0)
+            if (entity.Id > 0 && entity.Name != null && entity.Name != "")
             {
+                if (entity.ReqLevel! >= 0)
+                {
+                    entity.ReqLevel = 0;
+                }
                 itemRepo.Update(entity);
             }
             else
             {
-                throw new ArgumentException("Item update failed, invalid req. level, name null or wrong id");
+                throw new ArgumentException("Item update failed, name null or wrong id");
             }
         }
     }

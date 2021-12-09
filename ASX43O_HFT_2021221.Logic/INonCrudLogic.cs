@@ -8,6 +8,7 @@ namespace ASX43O_HFT_2021221.Logic
         PlayerCharacter CharacterWithBestItem();
         PlayerCharacter CharacterWithItem(int ItemId);
         IEnumerable<PlayerItem> ItemsUsedByClass(int ClassId);
-        IEnumerable<PlayerClass> UnusedClasses();
+        IEnumerable<ItemsByRaceResult> ItemsByRace();
+        IEnumerable<PlayerClass> UsedClasses();
     }
 }

@@ -18,24 +18,38 @@ namespace ASX43O_HFT_2021221.Logic
 
         public void Create(PlayerClass entity)
         {
-            if (entity.Id > 0 && entity.Name != null && entity.Name != "")
+            if ( entity.Name != null && entity.Name != "")
             {
                 repo.Create(entity);
             }
             else
             {
-                throw new ArgumentException("Class creation failed, id or name invalid");
+                throw new ArgumentException("Class creation failed, name invalid");
             }
         }
 
         public void Delete(PlayerClass entity)
         {
-            repo.Delete(entity);
+            if (repo.GetAll().Contains(entity))
+            {
+                repo.Delete(entity);
+            }
+            else
+            {
+                throw new Exception("Given class doesn't exist");
+            }
         }
 
         public void Delete(int id)
         {
-            repo.Delete(id);
+            if (repo.GetAll().Any(x => x.Id.Equals(id)))
+            {
+                repo.Delete(id);
+            }
+            else
+            {
+                throw new Exception("Given class id doesn't exist");
+            }
         }
 
         public IEnumerable<PlayerClass> GetAll()

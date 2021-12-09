@@ -91,10 +91,22 @@ namespace ASX43O_HFT_2021221.Test
         }
 
         [Test]
-        public void CharacterWithItemTest()
+        public void CharacterWithItemTestValid()
         {
             var q = Logic.CharacterWithItem(5);
             Assert.That(q.Id.Equals(2));
+        }
+
+        [Test]
+        public void CharacterWithItemTest_NonExistantItem()
+        {
+            
+            Assert.That(() => 
+            {
+                Logic.CharacterWithItem(-1);
+            }, 
+            Throws.Nothing
+            );
         }
 
         [Test]
@@ -102,6 +114,13 @@ namespace ASX43O_HFT_2021221.Test
         {
             var q = Logic.ItemsUsedByClass(7);
             Assert.That(q.Count().Equals(2));
+        }
+
+        [Test]
+        public void UsedClassesTest()
+        {
+            var q = Logic.UsedClasses();
+            Assert.That(q.Count().Equals(6));
         }
     }
 }

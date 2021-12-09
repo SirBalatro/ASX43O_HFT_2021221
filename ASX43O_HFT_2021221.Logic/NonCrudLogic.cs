@@ -48,12 +48,24 @@ namespace ASX43O_HFT_2021221.Logic
                     select item;
             return q;
         }
-        public IEnumerable<PlayerClass> UnusedClasses()
+        public IEnumerable<PlayerClass> UsedClasses()
         {
-            var q = from cl in classRepo.GetAll()
-                    where cl.Characters.Count().Equals(0)
-                    select cl;
+            var q = from c in classRepo.GetAll()
+                    join ch in charRepo.GetAll() on c.Id equals ch.ClassId
+                    select c;
             return q;
         }
+
+        public IEnumerable<ItemsByRaceResult> ItemsByRace()
+        {
+            var q = from r in raceRepo.GetAll()
+                    join ch in charRepo.GetAll() on r.Id equals ch.RaceId
+                    join i in itemRepo.GetAll() on ch.Id equals i.OwnerId
+                    group i by new {r, ch.Items} into grp
+                    select new ItemsByRaceResult(grp.Key.r,grp.Key.Items);
+            return q.ToList();
+        }
+
+
     }
 }

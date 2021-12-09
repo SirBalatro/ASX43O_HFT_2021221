@@ -17,31 +17,40 @@ namespace ASX43O_HFT_2021221.Logic
             this.charRepo = charRepo;
         }
 
-        public void ChangeName(int id, string name)
-        {
-            charRepo.ChangeName(id, name);
-        }
-
         public void Create(PlayerCharacter entity)
         {
-            if (entity.Id > 0 && entity.Name != null && entity.Name != "" && entity.CharacterLevel >= 0)
+            if (entity.Name != null && entity.Name != "" && entity.CharacterLevel >= 0)
             {
                 charRepo.Create(entity);
             }
             else
             {
-                throw new ArgumentException("Character creation failed, id, name or level invalid");
+                throw new ArgumentException("Character creation failed, name or level invalid");
             }
         }
 
         public void Delete(PlayerCharacter entity)
         {
-            charRepo.Delete(entity);
+            if (charRepo.GetAll().Contains(entity))
+            {
+                charRepo.Delete(entity);
+            }
+            else
+            {
+                throw new Exception("Given character doesn't exist");
+            }
         }
 
         public void Delete(int id)
         {
-            charRepo.Delete(id);
+            if (charRepo.GetAll().Any(x => x.Id.Equals(id)))
+            {
+                charRepo.Delete(id);
+            }
+            else
+            {
+                throw new Exception("Given character id doesn't exist");
+            }
         }
 
         public IEnumerable<PlayerCharacter> GetAll()
@@ -56,7 +65,14 @@ namespace ASX43O_HFT_2021221.Logic
 
         public void LevelUp(int id)
         {
-            charRepo.LevelUp(id);
+            if (charRepo.GetAll().Any(x => x.Id.Equals(id)))
+            {
+                charRepo.LevelUp(id);
+            }
+            else
+            {
+                throw new Exception("Given character id doesn't exist");
+            }
         }
 
         public void Update(PlayerCharacter entity)

@@ -30,24 +30,38 @@ namespace ASX43O_HFT_2021221.Logic
 
         public void Create(PlayerRace entity)
         {
-            if (entity.Id > 0 && entity.Name != null && entity.Name != "")
+            if (entity.Name != null && entity.Name != "")
             {
                 raceRepo.Create(entity);
             }
             else
             {
-                throw new ArgumentException("Race creation failed, name null or wrong id");
+                throw new ArgumentException("Race creation failed, name null or empty");
             }
         }
 
         public void Delete(PlayerRace entity)
         {
-            raceRepo.Delete(entity);
+            if (raceRepo.GetAll().Contains(entity))
+            {
+                raceRepo.Delete(entity);
+            }
+            else
+            {
+                throw new Exception("Given race doesn't exist");
+            }
         }
 
         public void Delete(int id)
         {
-            raceRepo.Delete(id);
+            if (raceRepo.GetAll().Any(x => x.Id.Equals(id)))
+            {
+                raceRepo.Delete(id);
+            }
+            else
+            {
+                throw new Exception("Given race id doesn't exist");
+            }
         }
 
         public IEnumerable<PlayerRace> GetAll()

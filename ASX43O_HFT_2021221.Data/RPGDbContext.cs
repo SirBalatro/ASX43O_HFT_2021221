@@ -40,12 +40,13 @@ namespace ASX43O_HFT_2021221.Data
                 .HasOne(player => player.Race)
                 .WithMany(race => race.Characters)
                 .HasForeignKey(player => player.RaceId)
-                .OnDelete(DeleteBehavior.ClientSetNull);
+                .OnDelete(DeleteBehavior.Cascade);
                 entity
                 .HasOne(player => player.Class)
                 .WithMany(pclass => pclass.Characters)
                 .HasForeignKey(player => player.ClassId)
-                .OnDelete(DeleteBehavior.ClientSetNull);
+                .OnDelete(DeleteBehavior.Cascade);
+
                 /*
                 entity
                 .HasMany(player => player.Skills)
@@ -71,7 +72,7 @@ namespace ASX43O_HFT_2021221.Data
                 .HasOne(item => item.Owner)
                 .WithMany(player => player.Items)
                 .HasForeignKey(item => item.OwnerId)
-                .OnDelete(DeleteBehavior.ClientSetNull);
+                .OnDelete(DeleteBehavior.Cascade);
             });
 
             /*

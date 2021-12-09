@@ -47,6 +47,12 @@ namespace ASX43O_HFT_2021221.Endpoint.Controllers
             l.Update(value);
         }
 
+        [HttpPut("{id}")]
+        public void LevelUp(int id)
+        {
+            l.LevelUp(id);
+        }
+
         // DELETE api/<PlayerCharacterController>/5
         [HttpDelete("{id}")]
         public void Delete(int id)

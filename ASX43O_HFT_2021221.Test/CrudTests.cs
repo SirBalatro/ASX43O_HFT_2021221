@@ -11,7 +11,7 @@ using NUnit.Framework;
 
 namespace ASX43O_HFT_2021221.Test
 {
-    class CreateTests
+    class CrudTests
     {
         Mock<ICharacterRepository> mockCharRepo = new Mock<ICharacterRepository>();
         IPlayerCharacterLogic CharLogic;
@@ -22,7 +22,7 @@ namespace ASX43O_HFT_2021221.Test
         Mock<IItemRepository> mockItemRepo = new Mock<IItemRepository>();
         IPlayerItemLogic ItemLogic;
 
-        public CreateTests()
+        public CrudTests()
         {
             CharLogic = new PlayerCharacterLogic(mockCharRepo.Object);
             RaceLogic = new PlayerRaceLogic(mockRaceRepo.Object);
@@ -93,7 +93,6 @@ namespace ASX43O_HFT_2021221.Test
                 );
         }
 
-        [TestCase("valid", -1)]
         [TestCase("", 1)]
         [TestCase(null, 1)]
         public void ItemCreateInvalid(string name, int lvl)
