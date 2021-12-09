@@ -11,10 +11,12 @@ namespace ASX43O_HFT_2021221.Logic
     public class PlayerItemLogic : IPlayerItemLogic
     {
         IItemRepository itemRepo;
+        ICharacterRepository charRepo;
 
-        public PlayerItemLogic(IItemRepository itemRepo)
+        public PlayerItemLogic(IItemRepository itemRepo, ICharacterRepository charRepo)
         {
             this.itemRepo = itemRepo;
+            this.charRepo = charRepo;
         }
 
         public PlayerItem BestItem()
@@ -26,18 +28,26 @@ namespace ASX43O_HFT_2021221.Logic
 
         public void Create(PlayerItem entity)
         {
-            if (entity.Name != null && entity.Name != "")
+            if (charRepo.GetAll().Any(x => x.Id.Equals(entity.OwnerId)))
             {
-                if (entity.ReqLevel !>= 0)
+                if (entity.Name != null && entity.Name != "")
                 {
-                    entity.ReqLevel = 0;
+                    if (entity.ReqLevel! >= 0)
+                    {
+                        entity.ReqLevel = 0;
+                    }
+                    itemRepo.Create(entity);
                 }
-                itemRepo.Create(entity);
+                else
+                {
+                    throw new ArgumentException("Item creation failed, name null or empty");
+                }
             }
             else
             {
-                throw new ArgumentException("Item creation failed, name null or empty");
+                throw new ArgumentException("Item creation failed, owner id invalid");
             }
+
         }
 
         public void Delete(PlayerItem entity)

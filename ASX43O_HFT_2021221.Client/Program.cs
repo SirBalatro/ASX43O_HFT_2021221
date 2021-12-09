@@ -87,28 +87,21 @@ namespace ASX43O_HFT_2021221.Client
             createMenu.Add("Add a character", () =>
             {
                 Console.Clear();
-                try
+                var c = new PlayerCharacter();
+                Console.WriteLine("Enter character name (required):");
+                c.Name = Console.ReadLine();
+                Console.WriteLine("Enter race id (required):");
+                c.RaceId = int.Parse(Console.ReadLine());
+                Console.WriteLine("Enter class id (required):");
+                c.ClassId = int.Parse(Console.ReadLine());
+                Console.WriteLine("Enter character level (optional):");
+                var input = Console.ReadLine();
+                if (input != "")
                 {
-                    var c = new PlayerCharacter();
-                    Console.WriteLine("Enter character name (required):");
-                    c.Name = Console.ReadLine();
-                    Console.WriteLine("Enter race id (required):");
-                    c.RaceId = int.Parse(Console.ReadLine());
-                    Console.WriteLine("Enter class id (required):");
-                    c.ClassId = int.Parse(Console.ReadLine());
-                    Console.WriteLine("Enter character level (optional):");
-                    var input = Console.ReadLine();
-                    if (input != "")
-                    {
-                        c.CharacterLevel = int.Parse(input);
-                    }
+                    c.CharacterLevel = int.Parse(input);
+                }
 
-                    restService.Post<PlayerCharacter>(c, "/PlayerCharacter");
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
-                }
+                restService.Post<PlayerCharacter>(c, "/PlayerCharacter");
 
 
                 Console.WriteLine("Press enter to continue");
@@ -119,18 +112,12 @@ namespace ASX43O_HFT_2021221.Client
             {
                 Console.Clear();
 
-                try
-                {
-                    var c = new PlayerRace();
-                    Console.WriteLine("Enter race name (required):");
-                    c.Name = Console.ReadLine();
+                var c = new PlayerRace();
+                Console.WriteLine("Enter race name (required):");
+                c.Name = Console.ReadLine();
 
-                    restService.Post<PlayerRace>(c, "/PlayerRace");
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
-                }
+                restService.Post<PlayerRace>(c, "/PlayerRace");
+
 
 
                 Console.WriteLine("Press enter to continue");
@@ -141,18 +128,11 @@ namespace ASX43O_HFT_2021221.Client
             {
                 Console.Clear();
 
-                try
-                {
-                    var c = new PlayerClass();
-                    Console.WriteLine("Enter class name (required):");
-                    c.Name = Console.ReadLine();
+                var c = new PlayerClass();
+                Console.WriteLine("Enter class name (required):");
+                c.Name = Console.ReadLine();
 
-                    restService.Post<PlayerClass>(c, "/PlayerClass");
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
-                }
+                restService.Post<PlayerClass>(c, "/PlayerClass");
 
                 Console.WriteLine("Press enter to continue");
                 Console.ReadLine();
@@ -162,26 +142,19 @@ namespace ASX43O_HFT_2021221.Client
             {
                 Console.Clear();
 
-                try
+                var c = new PlayerItem();
+                Console.WriteLine("Enter item name (required):");
+                c.Name = Console.ReadLine();
+                Console.WriteLine("Enter owners id (required):");
+                c.OwnerId = int.Parse(Console.ReadLine());
+                Console.WriteLine("Enter required level (optional):");
+                var input = Console.ReadLine();
+                if (input != "")
                 {
-                    var c = new PlayerItem();
-                    Console.WriteLine("Enter item name (required):");
-                    c.Name = Console.ReadLine();
-                    Console.WriteLine("Enter owners id (required):");
-                    c.OwnerId = int.Parse(Console.ReadLine());
-                    Console.WriteLine("Enter required level (optional):");
-                    var input = Console.ReadLine();
-                    if (input != "")
-                    {
-                        c.ReqLevel = int.Parse(input);
-                    }
+                    c.ReqLevel = int.Parse(input);
+                }
 
-                    restService.Post<PlayerItem>(c, "/PlayerItem");
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
-                }
+                restService.Post<PlayerItem>(c, "/PlayerItem");
 
 
                 Console.WriteLine("Press enter to continue");
@@ -197,30 +170,24 @@ namespace ASX43O_HFT_2021221.Client
             updateMenu.Add("Update a character", () =>
             {
                 Console.Clear();
-                try
-                {
-                    var c = new PlayerCharacter();
-                    Console.WriteLine("Enter character id (required):");
-                    c.Id = int.Parse(Console.ReadLine());
-                    Console.WriteLine("Enter character name (required):");
-                    c.Name = Console.ReadLine();
-                    Console.WriteLine("Enter race id (required):");
-                    c.RaceId = int.Parse(Console.ReadLine());
-                    Console.WriteLine("Enter class id (required):");
-                    c.ClassId = int.Parse(Console.ReadLine());
-                    Console.WriteLine("Enter character level (optional):");
-                    var input = Console.ReadLine();
-                    if (input != "")
-                    {
-                        c.CharacterLevel = int.Parse(input);
-                    }
 
-                    restService.Put<PlayerCharacter>(c, "/PlayerCharacter");
-                }
-                catch (Exception e)
+                var c = new PlayerCharacter();
+                Console.WriteLine("Enter character id (required):");
+                c.Id = int.Parse(Console.ReadLine());
+                Console.WriteLine("Enter character name (required):");
+                c.Name = Console.ReadLine();
+                Console.WriteLine("Enter race id (required):");
+                c.RaceId = int.Parse(Console.ReadLine());
+                Console.WriteLine("Enter class id (required):");
+                c.ClassId = int.Parse(Console.ReadLine());
+                Console.WriteLine("Enter character level (optional):");
+                var input = Console.ReadLine();
+                if (input != "")
                 {
-                    Console.WriteLine(e.Message);
+                    c.CharacterLevel = int.Parse(input);
                 }
+
+                restService.Put<PlayerCharacter>(c, "/PlayerCharacter");
 
                 Console.WriteLine("Press enter to continue");
                 Console.ReadLine();
@@ -230,20 +197,13 @@ namespace ASX43O_HFT_2021221.Client
             {
                 Console.Clear();
 
-                try
-                {
-                    var c = new PlayerRace();
-                    Console.WriteLine("Enter race id (required):");
-                    c.Id = int.Parse(Console.ReadLine());
-                    Console.WriteLine("Enter race name (required):");
-                    c.Name = Console.ReadLine();
+                var c = new PlayerRace();
+                Console.WriteLine("Enter race id (required):");
+                c.Id = int.Parse(Console.ReadLine());
+                Console.WriteLine("Enter race name (required):");
+                c.Name = Console.ReadLine();
 
-                    restService.Put<PlayerRace>(c, "/PlayerRace");
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
-                }
+                restService.Put<PlayerRace>(c, "/PlayerRace");
 
                 Console.WriteLine("Press enter to continue");
                 Console.ReadLine();
@@ -253,20 +213,13 @@ namespace ASX43O_HFT_2021221.Client
             {
                 Console.Clear();
 
-                try
-                {
-                    var c = new PlayerClass();
-                    Console.WriteLine("Enter class id (required):");
-                    c.Id = int.Parse(Console.ReadLine());
-                    Console.WriteLine("Enter class name (required):");
-                    c.Name = Console.ReadLine();
+                var c = new PlayerClass();
+                Console.WriteLine("Enter class id (required):");
+                c.Id = int.Parse(Console.ReadLine());
+                Console.WriteLine("Enter class name (required):");
+                c.Name = Console.ReadLine();
 
-                    restService.Put<PlayerClass>(c, "/PlayerClass");
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
-                }
+                restService.Put<PlayerClass>(c, "/PlayerClass");
 
 
                 Console.WriteLine("Press enter to continue");
@@ -277,28 +230,21 @@ namespace ASX43O_HFT_2021221.Client
             {
                 Console.Clear();
 
-                try
+                var c = new PlayerItem();
+                Console.WriteLine("Enter item id (required):");
+                c.Id = int.Parse(Console.ReadLine());
+                Console.WriteLine("Enter item name (required):");
+                c.Name = Console.ReadLine();
+                Console.WriteLine("Enter owners id (required):");
+                c.OwnerId = int.Parse(Console.ReadLine());
+                Console.WriteLine("Enter required level (optional):");
+                var input = Console.ReadLine();
+                if (input != "")
                 {
-                    var c = new PlayerItem();
-                    Console.WriteLine("Enter item id (required):");
-                    c.Id = int.Parse(Console.ReadLine());
-                    Console.WriteLine("Enter item name (required):");
-                    c.Name = Console.ReadLine();
-                    Console.WriteLine("Enter owners id (required):");
-                    c.OwnerId = int.Parse(Console.ReadLine());
-                    Console.WriteLine("Enter required level (optional):");
-                    var input = Console.ReadLine();
-                    if (input != "")
-                    {
-                        c.ReqLevel = int.Parse(input);
-                    }
+                    c.ReqLevel = int.Parse(input);
+                }
 
-                    restService.Put<PlayerItem>(c, "/PlayerItem");
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
-                }
+                restService.Put<PlayerItem>(c, "/PlayerItem");
 
 
                 Console.WriteLine("Press enter to continue");
@@ -315,17 +261,10 @@ namespace ASX43O_HFT_2021221.Client
             {
                 Console.Clear();
 
-                try
-                {
-                    Console.WriteLine("Enter character id (required):");
-                    var c = int.Parse(Console.ReadLine());
+                Console.WriteLine("Enter character id (required):");
+                var c = int.Parse(Console.ReadLine());
 
-                    restService.Delete(c, "/PlayerCharacter");
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
-                }
+                restService.Delete(c, "/PlayerCharacter");
 
                 Console.WriteLine("Press enter to continue");
                 Console.ReadLine();
@@ -335,17 +274,10 @@ namespace ASX43O_HFT_2021221.Client
             {
                 Console.Clear();
 
-                try
-                {
-                    Console.WriteLine("Enter race id (required):");
-                    var c = int.Parse(Console.ReadLine());
+                Console.WriteLine("Enter race id (required):");
+                var c = int.Parse(Console.ReadLine());
 
-                    restService.Delete(c, "/PlayerRace");
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
-                }
+                restService.Delete(c, "/PlayerRace");
 
                 Console.WriteLine("Press enter to continue");
                 Console.ReadLine();
@@ -355,17 +287,10 @@ namespace ASX43O_HFT_2021221.Client
             {
                 Console.Clear();
 
-                try
-                {
-                    Console.WriteLine("Enter class id (required):");
-                    var c = int.Parse(Console.ReadLine());
+                Console.WriteLine("Enter class id (required):");
+                var c = int.Parse(Console.ReadLine());
 
-                    restService.Delete(c, "/PlayerClass");
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
-                }
+                restService.Delete(c, "/PlayerClass");
 
                 Console.WriteLine("Press enter to continue");
                 Console.ReadLine();
@@ -375,17 +300,10 @@ namespace ASX43O_HFT_2021221.Client
             {
                 Console.Clear();
 
-                try
-                {
-                    Console.WriteLine("Enter item id (required):");
-                    var c = int.Parse(Console.ReadLine());
+                Console.WriteLine("Enter item id (required):");
+                var c = int.Parse(Console.ReadLine());
 
-                    restService.Delete(c, "/PlayerItem");
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
-                }
+                restService.Delete(c, "/PlayerItem");
 
                 Console.WriteLine("Press enter to continue");
                 Console.ReadLine();
@@ -401,16 +319,9 @@ namespace ASX43O_HFT_2021221.Client
             {
                 Console.Clear();
 
-                try
-                {
-                    var res = restService.GetSingle<PlayerCharacter>("/Stat/CharacterWithBestItem");
-                    Console.WriteLine("Owner of the best item: " + res.Name);
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
-                }
-                                
+                var res = restService.GetSingle<PlayerCharacter>("/Stat/CharacterWithBestItem");
+                Console.WriteLine("Owner of the best item: " + res.Name);
+
                 Console.WriteLine("Press enter to continue");
                 Console.ReadLine();
             });
@@ -419,17 +330,10 @@ namespace ASX43O_HFT_2021221.Client
             {
                 Console.Clear();
 
-                try
-                {
-                    Console.WriteLine("Enter item id (required):");
-                    var itemid = int.Parse(Console.ReadLine());
-                    var res = restService.Get<PlayerCharacter>(itemid, "/Stat/CharacterWithItem");
-                    Console.WriteLine("Owner of the item:" + res.Name);
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
-                }
+                Console.WriteLine("Enter item id (required):");
+                var itemid = int.Parse(Console.ReadLine());
+                var res = restService.Get<PlayerCharacter>(itemid, "/Stat/CharacterWithItem");
+                Console.WriteLine("Owner of the item:" + res.Name);
 
                 Console.WriteLine("Press enter to continue");
                 Console.ReadLine();
@@ -439,27 +343,20 @@ namespace ASX43O_HFT_2021221.Client
             {
                 Console.Clear();
 
-                try
-                {
-                    Console.WriteLine("Enter class id (required):");
-                    var classid = int.Parse(Console.ReadLine());
-                    var res = restService.GetListWithArgument<PlayerItem>(classid, "/Stat/ItemsUsedByClass");
+                Console.WriteLine("Enter class id (required):");
+                var classid = int.Parse(Console.ReadLine());
+                var res = restService.GetListWithArgument<PlayerItem>(classid, "/Stat/ItemsUsedByClass");
 
-                    if (!res.Count().Equals(0))
+                if (!res.Count().Equals(0))
+                {
+                    foreach (var item in res)
                     {
-                        foreach (var item in res)
-                        {
-                            Console.WriteLine("Name: " + item.Name);
-                        }
-                    }
-                    else
-                    {
-                        Console.WriteLine("No items are used by this class");
+                        Console.WriteLine("Name: " + item.Name);
                     }
                 }
-                catch (Exception e)
+                else
                 {
-                    Console.WriteLine(e.Message);
+                    Console.WriteLine("No items are used by this class");
                 }
 
                 Console.WriteLine("Press enter to continue");
@@ -470,24 +367,17 @@ namespace ASX43O_HFT_2021221.Client
             {
                 Console.Clear();
 
-                try
+                var res = restService.Get<PlayerClass>("/Stat/UsedClasses");
+                if (!res.Count().Equals(0))
                 {
-                    var res = restService.Get<PlayerClass>("/Stat/UsedClasses");
-                    if (!res.Count().Equals(0))
+                    foreach (var item in res)
                     {
-                        foreach (var item in res)
-                        {
-                            Console.WriteLine("Name: " + item.Name);
-                        }
-                    }
-                    else
-                    {
-                        Console.WriteLine("There are no classes or none of them are used");
+                        Console.WriteLine("Name: " + item.Name);
                     }
                 }
-                catch (Exception e)
+                else
                 {
-                    Console.WriteLine(e.Message);
+                    Console.WriteLine("There are no classes or none of them are used");
                 }
 
                 Console.WriteLine("Press enter to continue");
@@ -498,27 +388,20 @@ namespace ASX43O_HFT_2021221.Client
             {
                 Console.Clear();
 
-                try
-                {
-                    var results = restService.Get<ItemsByRaceResult>("/Stat/ItemsByRace");
+                var results = restService.Get<ItemsByRaceResult>("/Stat/ItemsByRace");
 
-                    if (!results.Count().Equals(0))
+                if (!results.Count().Equals(0))
+                {
+                    foreach (var result in results)
                     {
-                        foreach (var result in results)
-                        {
-                            Console.Write("Race: " + result.race.Name + " ");
-                            Console.Write(string.Join(", ", result.items.Select(x => x.Name)));
-                            Console.WriteLine();
-                        }
-                    }
-                    else
-                    {
-                        Console.WriteLine("There are no races, or characters");
+                        Console.Write("Race: " + result.race.Name + " ");
+                        Console.Write(string.Join(", ", result.items.Select(x => x.Name)));
+                        Console.WriteLine();
                     }
                 }
-                catch (Exception e)
+                else
                 {
-                    Console.WriteLine(e.Message);
+                    Console.WriteLine("There are no races, or characters");
                 }
 
 

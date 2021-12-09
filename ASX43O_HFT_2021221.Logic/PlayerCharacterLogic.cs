@@ -11,17 +11,34 @@ namespace ASX43O_HFT_2021221.Logic
     public class PlayerCharacterLogic : IPlayerCharacterLogic
     {
         private ICharacterRepository charRepo;
+        private IRaceRepository raceRepo;
+        private IClassRepository classRepo;
 
+        public PlayerCharacterLogic(ICharacterRepository charRepo, IRaceRepository raceRepo, IClassRepository classRepo)
+        {
+            this.raceRepo = raceRepo;
+            this.classRepo = classRepo;
+            this.charRepo = charRepo;
+        }
+
+        /*
         public PlayerCharacterLogic(ICharacterRepository charRepo)
         {
             this.charRepo = charRepo;
         }
-
+        */
         public void Create(PlayerCharacter entity)
         {
             if (entity.Name != null && entity.Name != "" && entity.CharacterLevel >= 0)
             {
-                charRepo.Create(entity);
+                if (raceRepo.GetAll().Any(x => x.Id.Equals(entity.RaceId)) && classRepo.GetAll().Any(x => x.Id.Equals(entity.ClassId)))
+                {
+                    charRepo.Create(entity);
+                }
+                else
+                {
+                    throw new ArgumentException("Character creation failed, race id or class id does not match with existing race or class");
+                }
             }
             else
             {
@@ -83,7 +100,7 @@ namespace ASX43O_HFT_2021221.Logic
             }
             else
             {
-                throw new ArgumentException("Character update failed, id, name or level invalid");
+                throw new Exception("Character update failed, id, name or level invalid");
             }
         }
 
