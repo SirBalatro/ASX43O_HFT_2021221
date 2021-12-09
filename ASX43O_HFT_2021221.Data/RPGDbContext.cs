@@ -136,11 +136,11 @@ namespace ASX43O_HFT_2021221.Data
                 skillFight, skillArchery, skillCurse, skillPoison, skillHeal, skillBlock, skillPortal, skillSteal
             };*/
 
-            var sword = new PlayerItem() { Id = 10, Name = "Shortsword", OwnerId = khainite.Id , ReqLevel = 1};
-            var bow = new PlayerItem() { Id = 11, Name = "Elven Bow", OwnerId = legolas.Id, ReqLevel = 4 };
-            var dagger = new PlayerItem() { Id = 12, Name = "Poison Dagger", OwnerId = khainite.Id, ReqLevel = 2 };
-            var cloak = new PlayerItem() { Id = 13, Name = "Cloak", OwnerId = robin.Id, ReqLevel = 1 };
-            var shield = new PlayerItem() { Id = 14, Name = "A wooden door", OwnerId = brog.Id, ReqLevel = 1 };
+            var sword = new PlayerItem() { Id = 1, Name = "Shortsword", OwnerId = khainite.Id , ReqLevel = 1};
+            var bow = new PlayerItem() { Id = 2, Name = "Elven Bow", OwnerId = legolas.Id, ReqLevel = 4 };
+            var dagger = new PlayerItem() { Id = 3, Name = "Poison Dagger", OwnerId = khainite.Id, ReqLevel = 2 };
+            var cloak = new PlayerItem() { Id = 4, Name = "Cloak", OwnerId = robin.Id, ReqLevel = 1 };
+            var shield = new PlayerItem() { Id = 5, Name = "A wooden door", OwnerId = brog.Id, ReqLevel = 1 };
             
             /*
             var items = new List<PlayerItem>() {
