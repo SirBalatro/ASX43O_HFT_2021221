@@ -8,7 +8,6 @@ namespace ASX43O_HFT_2021221.Logic
     {
         void LevelUp(int id);
         void ChangeName(int id, string name);
-        IEnumerable<AverageResult> RaceLevelAverage();
         double LevelAverage();
     }
 }

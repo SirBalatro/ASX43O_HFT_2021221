@@ -18,18 +18,14 @@ namespace ASX43O_HFT_2021221.Endpoint.Controllers
         IPlayerRaceLogic raceLogic;
         IPlayerClassLogic classLogic;
         IPlayerItemLogic itemLogic;
-        public Stat(IPlayerCharacterLogic charLogic, IPlayerRaceLogic raceLogic, IPlayerClassLogic classLogic, IPlayerItemLogic itemLogic)
+        INonCrudLogic ncLogic;
+        public Stat(IPlayerCharacterLogic charLogic, IPlayerRaceLogic raceLogic, IPlayerClassLogic classLogic, IPlayerItemLogic itemLogic, INonCrudLogic nonCrudLogic)
         {
             this.charLogic = charLogic;
             this.raceLogic = raceLogic;
             this.classLogic = classLogic;
             this.itemLogic = itemLogic;
-        }
-
-        [HttpGet]
-        public IEnumerable<AverageResult> RaceLevelAverage()
-        {
-            return charLogic.RaceLevelAverage();
+            this.ncLogic = nonCrudLogic;
         }
 
         [HttpGet]
@@ -39,9 +35,9 @@ namespace ASX43O_HFT_2021221.Endpoint.Controllers
         }
 
         [HttpGet]
-        public string CharacterWithBestItem()
+        public PlayerCharacter CharacterWithBestItem()
         {
-            return "asd";
+            return ncLogic.CharacterWithBestItem();
         }
 
     }

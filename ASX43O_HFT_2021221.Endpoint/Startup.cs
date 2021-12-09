@@ -25,6 +25,7 @@ namespace ASX43O_HFT_2021221.Endpoint
             services.AddTransient <IPlayerClassLogic, PlayerClassLogic> ();
             //services.AddTransient <IPlayerSkillLogic, PlayerSkillLogic> ();
             services.AddTransient <IPlayerItemLogic, PlayerItemLogic> ();
+            services.AddTransient<INonCrudLogic, NonCrudLogic>();
             
             services.AddTransient <ICharacterRepository, PlayerCharRepo>();
             services.AddTransient <IRaceRepository, PlayerRaceRepo> ();

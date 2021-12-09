@@ -71,27 +71,9 @@ namespace ASX43O_HFT_2021221.Logic
             }
         }
 
-        public IEnumerable<AverageResult> RaceLevelAverage()
-        {
-            var q = from c in charRepo.GetAll()
-                    group c by new { c.RaceId, c.Race.Name } into g
-                    select new AverageResult(g.Key.Name, g.Average(x => x.CharacterLevel));
-            return q.ToList();
-        }
-
         public double LevelAverage()
         {
             return (double)charRepo.GetAll().Average(x => x.CharacterLevel);
         }
-
-        public PlayerCharacter CharacterWithItem(PlayerItem playerItem)
-        {
-            var q = (from c in charRepo.GetAll()
-                     where c.Items.Any(x => x.Id.Equals(playerItem.Id))
-                     select c).FirstOrDefault();
-
-            return q;
-        }
-
     }
 }

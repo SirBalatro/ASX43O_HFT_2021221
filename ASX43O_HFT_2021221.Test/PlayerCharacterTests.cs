@@ -13,12 +13,6 @@ namespace ASX43O_HFT_2021221.Test
     public class PlayerCharacterTests
     {
         [Test]
-        public void Test()
-        {
-            Assert.Pass();
-        }
-
-        [Test]
         public void PlayerInitializes()
         {
             var p = new PlayerCharacter();
