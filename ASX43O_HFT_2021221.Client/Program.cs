@@ -394,8 +394,8 @@ namespace ASX43O_HFT_2021221.Client
                 {
                     foreach (var result in results)
                     {
-                        Console.Write("Race: " + result.race.Name + " ");
-                        Console.Write(string.Join(", ", result.items.Select(x => x.Name)));
+                        Console.Write("Race: " + result.Race.Name + " ");
+                        Console.Write(string.Join(", ", result.Items.Select(x => x.Name)));
                         Console.WriteLine();
                     }
                 }

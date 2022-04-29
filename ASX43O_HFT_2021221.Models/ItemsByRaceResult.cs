@@ -8,13 +8,13 @@ namespace ASX43O_HFT_2021221.Models
 {
     public class ItemsByRaceResult
     {
-        public PlayerRace race { get; set; }
-        public IEnumerable<PlayerItem> items { get; set; }
+        public PlayerRace Race { get; set; }
+        public IEnumerable<PlayerItem> Items { get; set; }
 
         public ItemsByRaceResult(PlayerRace race, IEnumerable<PlayerItem> items)
         {
-            this.race = race;
-            this.items = items;
+            this.Race = race;
+            this.Items = items;
         }
     }
 }
