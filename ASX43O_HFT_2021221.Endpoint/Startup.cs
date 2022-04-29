@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
 
 namespace ASX43O_HFT_2021221.Endpoint
 {
@@ -36,11 +37,18 @@ namespace ASX43O_HFT_2021221.Endpoint
             //services.AddTransient<DbContext, RPGDbContext>();
             services.AddTransient<RPGDbContext, RPGDbContext>();
             services.AddControllers();
+            services.AddSwaggerGen( c => 
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "ASX43O_HFT_2021221.Endpoint", Version = "v1" });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseSwagger();
+            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "ASX43O_HFT_2021221.Endpoint v1"));
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
