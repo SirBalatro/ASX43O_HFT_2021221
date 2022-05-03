@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>RPG Database</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <h1>Player Characters</h1>
+
+    <div id="formdiv">
+        <label>New Character's Name</label>
+        <input type="text" id="charname" />
+
+        <label>Race</label>
+        <input type="number" id="charrace" />
+
+        <label>Class</label>
+        <input type="number" id="charclass" />
+
+        <button type="button" onclick="create()">Add character</button>
+    </div>
+
+    <div id="updateformdiv">
+        <label>Updated Character's Name</label>
+        <input type="text" id="charnameupdate" />
+
+        <label>Race</label>
+        <input type="number" id="charraceupdate" />
+
+        <label>Class</label>
+        <input type="number" id="charclassupdate" />
+
+        <label>Level</label>
+        <input type="number" id="charlevelupdate" />
+
+        <button type="button" onclick="update()">Update character</button>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Race</th>
+                <th>Class</th>
+                <th>Level</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody id="resultarea">
+        </tbody>
+    </table>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

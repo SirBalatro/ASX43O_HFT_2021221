@@ -12,6 +12,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using ASX43O_HFT_2021221.Endpoint.Services;
 
 namespace ASX43O_HFT_2021221.Endpoint
 {
@@ -36,7 +37,11 @@ namespace ASX43O_HFT_2021221.Endpoint
 
             //services.AddTransient<DbContext, RPGDbContext>();
             services.AddTransient<RPGDbContext, RPGDbContext>();
+
+            services.AddSignalR();
+
             services.AddControllers();
+
             services.AddSwaggerGen( c => 
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ASX43O_HFT_2021221.Endpoint", Version = "v1" });
@@ -56,9 +61,17 @@ namespace ASX43O_HFT_2021221.Endpoint
 
             app.UseRouting();
 
+
+            app.UseCors(x => x
+                .AllowCredentials()
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+                .WithOrigins("http://localhost:42818"));
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<SignalRHub>("/hub");
             });
         }
     }

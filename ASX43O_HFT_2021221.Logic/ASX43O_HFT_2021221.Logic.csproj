@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="..\.editorconfig" Link=".editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\ASX43O_HFT_2021221.Models\ASX43O_HFT_2021221.Models.csproj" />
     <ProjectReference Include="..\ASX43O_HFT_2021221.Repository\ASX43O_HFT_2021221.Repository.csproj" />
   </ItemGroup>

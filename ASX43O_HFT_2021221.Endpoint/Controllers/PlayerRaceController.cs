@@ -1,6 +1,8 @@
-﻿using ASX43O_HFT_2021221.Logic;
+﻿using ASX43O_HFT_2021221.Endpoint.Services;
+using ASX43O_HFT_2021221.Logic;
 using ASX43O_HFT_2021221.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,9 +17,11 @@ namespace ASX43O_HFT_2021221.Endpoint.Controllers
     public class PlayerRaceController : ControllerBase
     {
         IPlayerRaceLogic l;
-        public PlayerRaceController(IPlayerRaceLogic logic)
+        IHubContext<SignalRHub> hub;
+        public PlayerRaceController(IPlayerRaceLogic logic, IHubContext<SignalRHub> hub)
         {
             this.l = logic;
+            this.hub = hub;
         }
         // GET: api/<PlayerRaceController>
         [HttpGet]
@@ -38,6 +42,7 @@ namespace ASX43O_HFT_2021221.Endpoint.Controllers
         public void Post([FromBody] PlayerRace value)
         {
             l.Create(value);
+            hub.Clients.All.SendAsync("RaceCreated", value);
         }
 
         // PUT api/<PlayerRaceController>/5
@@ -45,13 +50,16 @@ namespace ASX43O_HFT_2021221.Endpoint.Controllers
         public void Put([FromBody] PlayerRace value)
         {
             l.Update(value);
+            hub.Clients.All.SendAsync("RaceUpdated", value);
         }
 
         // DELETE api/<PlayerRaceController>/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            var toDelete = l.GetOne(id);
             l.Delete(id);
+            hub.Clients.All.SendAsync("ClassDeleted", toDelete);
         }
     }
 }

@@ -1,0 +1,45 @@
+﻿<UserControl x:Class="ASX43O_HFT_2021221.WPFClient.View.RaceView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ASX43O_HFT_2021221.WPFClient.View"
+             xmlns:vms="clr-namespace:ASX43O_HFT_2021221.WPFClient.ViewModel"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.DataContext>
+            <vms:RaceViewModel/>
+        </Grid.DataContext>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <ListBox ItemsSource="{Binding Races}" SelectedIndex="0" SelectedItem="{Binding SelectedRace}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="{Binding Id}" ContentStringFormat="ID: {0}"/>
+                        <Label Content="{Binding Name}" ContentStringFormat="Name: {0}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <StackPanel Grid.Column="1" Background="AliceBlue">
+            <Button Content="Add" Margin="5" Height="30" Command="{Binding CreateCommand}"/>
+            <Button Content="Update" Margin="5" Height="30" Command="{Binding UpdateCommand}"/>
+            <Button Content="Delete" Margin="5" Height="30" Command="{Binding DeleteCommand}"/>
+
+            <Border Margin="5,30,5,0" BorderThickness="1" BorderBrush="Black">
+                <Grid ShowGridLines="True">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="Name" Background="LightGray" />
+                    <TextBox Text="{Binding SelectedRace.Name}" Grid.Column="1"/>
+                </Grid>
+            </Border>
+        </StackPanel>
+    </Grid>
+</UserControl>
